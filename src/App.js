@@ -9,6 +9,10 @@ function App() {
   const [twitter, setTwitter] = useState("");
   const [user, setUser] = useState();
 
+  // const searchParams = new URLSearchParams(window.location.search);
+  // const id = searchParams.get("id");
+  // console.log(id);
+
   useEffect(() => {
     // const search = window.Telegram.WebApp.initData;
     // var converted = JSON.parse(
@@ -30,17 +34,25 @@ function App() {
   }, []);
 
   const onVerify = async () => {
-    // axios.post("http://localhost:5000/api/verify", { userData }).then((res) => {
-    //   console.log(res);
-    // });
     if (twitter === "") {
-      console.log("----");
       toast.error("You must input your twitter username to proceed!", {
         duration: 3000,
       });
       return;
     }
     setConfirmOpen(true);
+  };
+
+  const handleVerify = async () => {
+    axios
+      .post("http://localhost:5000/api/verify", { user, twitter })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        const res = error.response;
+        toast.error(res.data.message, { duration: 3000 });
+      });
   };
 
   return (
@@ -50,7 +62,7 @@ function App() {
         title="Want to proceed?"
         open={confirmOpen}
         onClose={() => setConfirmOpen(false)}
-        onConfirm={() => console.log("--")}
+        onConfirm={() => handleVerify()}
       >
         Are you sure you want to join LandWu with this info?
         <div>Twitter: {twitter}</div>
