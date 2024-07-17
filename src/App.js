@@ -2,8 +2,15 @@ import "./App.css";
 
 function App() {
   const onVerify = () => {
-    const data = window.Telegram.WebApp.initData;
-    console.log(data);
+    const search = window.Telegram.WebApp.initData;
+    var converted = JSON.parse(
+      '{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}',
+      function (key, value) {
+        return key === "" ? value : decodeURIComponent(value);
+      }
+    );
+    var userData = JSON.parse(converted.user);
+    console.log(converted, userData);
   };
 
   return (
