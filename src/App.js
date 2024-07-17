@@ -9,9 +9,9 @@ function App() {
   const [twitter, setTwitter] = useState("");
   const [user, setUser] = useState();
 
-  // const searchParams = new URLSearchParams(window.location.search);
-  // const id = searchParams.get("id");
-  // console.log(id);
+  const searchParams = new URLSearchParams(window.location.search);
+  const message_id = searchParams.get("message_id");
+  const chat_id = searchParams.get("chat_id");
 
   useEffect(() => {
     // const search = window.Telegram.WebApp.initData;
@@ -45,7 +45,12 @@ function App() {
 
   const handleVerify = async () => {
     axios
-      .post("http://localhost:5000/api/verify", { user, twitter })
+      .post("http://localhost:5000/api/verify", {
+        user,
+        twitter,
+        chat_id,
+        message_id,
+      })
       .then((res) => {
         console.log(res);
       })
