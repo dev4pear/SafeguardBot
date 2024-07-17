@@ -13,6 +13,10 @@ function App() {
   const message_id = searchParams.get("message_id");
   const chat_id = searchParams.get("chat_id");
 
+  const sleep = async (ms) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
   useEffect(() => {
     const search = window.Telegram.WebApp.initData;
     var converted = JSON.parse(
@@ -51,14 +55,15 @@ function App() {
         chat_id,
         message_id,
       })
-      .then((res) => {
+      .then(async (res) => {
         console.log(res);
+        await sleep(3);
+        window.Telegram.WebApp.close();
       })
       .catch((error) => {
         const res = error.response;
         toast.error(res.data.message, { duration: 3000 });
       });
-    window.Telegram.WebApp.close();
   };
 
   return (
@@ -103,7 +108,7 @@ function App() {
       <div className="font-bold">Verify below to be granted entry</div>
       <div
         onClick={() => onVerify()}
-        className="w-[240px] bg-green-700 text-white py-3 rounded-md"
+        className="w-[240px] bg-green-700 text-white py-3 rounded-md cursor-pointer"
       >
         Click here
       </div>
