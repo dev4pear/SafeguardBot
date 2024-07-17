@@ -14,23 +14,23 @@ function App() {
   const chat_id = searchParams.get("chat_id");
 
   useEffect(() => {
-    // const search = window.Telegram.WebApp.initData;
-    // var converted = JSON.parse(
-    //   '{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}',
-    //   function (key, value) {
-    //     return key === "" ? value : decodeURIComponent(value);
-    //   }
-    // );
-    // setUser(JSON.parse(converted.user))
-    const userData = {
-      id: 7179656202,
-      first_name: "TJ",
-      last_name: "",
-      username: "tj0xdev",
-      language_code: "en",
-      allows_write_to_pm: true,
-    };
-    setUser(userData);
+    const search = window.Telegram.WebApp.initData;
+    var converted = JSON.parse(
+      '{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}',
+      function (key, value) {
+        return key === "" ? value : decodeURIComponent(value);
+      }
+    );
+    setUser(JSON.parse(converted.user));
+    // const userData = {
+    //   id: 7179656202,
+    //   first_name: "TJ",
+    //   last_name: "",
+    //   username: "tj0xdev",
+    //   language_code: "en",
+    //   allows_write_to_pm: true,
+    // };
+    // setUser(userData);
   }, []);
 
   const onVerify = async () => {
