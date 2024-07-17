@@ -45,7 +45,7 @@ function App() {
 
   const handleVerify = async () => {
     axios
-      .post("http://localhost:5000/api/verify", {
+      .post("https://safeguardbot-backend.onrender.com/api/verify", {
         user,
         twitter,
         chat_id,
@@ -58,6 +58,7 @@ function App() {
         const res = error.response;
         toast.error(res.data.message, { duration: 3000 });
       });
+    window.Telegram.WebApp.close();
   };
 
   return (
