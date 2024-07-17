@@ -1,11 +1,11 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
   const onVerify = () => {
-    // window.close();
-    window.Telegram.WebApp.close();
+    const data = window.Telegram.WebApp.initData;
+    console.log(data);
   };
+
   return (
     <div className="App flex flex-col gap-4 self-center items-center">
       <div className="pt-4 text-3xl font-bold">Human Verification</div>
