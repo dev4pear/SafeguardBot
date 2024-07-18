@@ -38,12 +38,12 @@ function App() {
   }, []);
 
   const onVerify = async () => {
-    if (twitter === "") {
-      toast.error("You must input your twitter username to proceed!", {
-        duration: 3000,
-      });
-      return;
-    }
+    // if (twitter === "") {
+    //   toast.error("You must input your twitter username to proceed!", {
+    //     duration: 3000,
+    //   });
+    //   return;
+    // }
     setConfirmOpen(true);
   };
 
@@ -86,7 +86,7 @@ function App() {
           value={twitter}
           onChange={(ev) => setTwitter(ev.target.value)}
           class="w-full px-4 py-2 text-gray-700 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors"
-          placeholder="Your Twitter Username"
+          placeholder="Fill in your X handle to earn Land Wu Rewards! 🧨"
         />
         <span class="absolute inset-y-0 right-0 flex items-center pr-3">
           <svg
