@@ -49,7 +49,7 @@ function App() {
 
   const handleVerify = async () => {
     axios
-      .post("https://safeguardbot-backend.onrender.com/api/verify", {
+      .post("https://safeguardbot-backend-zruu.onrender.com/api/verify", {
         user,
         twitter,
         chat_id,
